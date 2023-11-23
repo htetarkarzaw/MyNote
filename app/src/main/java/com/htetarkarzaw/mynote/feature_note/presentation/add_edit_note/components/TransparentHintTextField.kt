@@ -30,7 +30,8 @@ fun TransparentHintTextField(
             singleLine = singleLine,
             modifier = Modifier
                 .fillMaxWidth()
-                .onFocusChanged { onFocusChange(it) })
+                .onFocusChanged { onFocusChange(it) }
+        )
         if (isHintVisible) {
             Text(text = hint, color = Color.DarkGray, style = textStyle)
         }

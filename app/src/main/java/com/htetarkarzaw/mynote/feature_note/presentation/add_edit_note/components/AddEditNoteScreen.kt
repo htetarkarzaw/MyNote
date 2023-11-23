@@ -17,12 +17,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -76,14 +76,14 @@ fun AddEditNoteScreen(
         }
     }
     Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackBarState) },
         floatingActionButton = {
             FloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.primary,
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
-                modifier = Modifier.background(
-                    MaterialTheme.colorScheme.primary
-                )
+                shape = CircleShape,
             ) {
                 Icon(
                     imageVector = Icons.Default.Save,
@@ -153,7 +153,7 @@ fun AddEditNoteScreen(
                 onValueChanged = { viewModel.onEvent(AddEditNoteEvent.EnterContent(it)) },
                 onFocusChange = { viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it)) },
                 isHintVisible = contentState.isVisibleHint,
-                singleLine = true,
+                singleLine = false,
                 textStyle = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.fillMaxSize()
             )
